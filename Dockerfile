@@ -1,13 +1,13 @@
 FROM alpine/git AS build_git
 RUN git clone https://github.com/pa11y/pa11y-webservice.git /app
 
-FROM node:23-slim AS build_node
+FROM node:24-slim AS build_node
 COPY --from=build_git /app /app
 WORKDIR /app
 RUN cd /app; \
     npm install;
 
-FROM node:23-slim
+FROM node:24-slim
 COPY --from=build_node /app /app
 WORKDIR /app
 
